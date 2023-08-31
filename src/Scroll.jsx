@@ -12,12 +12,12 @@ import {
     Badge,
 } from "@chakra-ui/react"
 
-const Scroll = ({isMobile, viewportHeight}) => {
+const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
     const columnLayout = useBreakpointValue({base: "1fr", lg: "repeat(7, 1fr)"})
 
     return (
         <>
-            <Flex position={'relative'} style={!isMobile && viewportHeight>=575?{ scrollSnapAlign: 'start', height: '100vh'}: null} flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto" py={'30px'} zIndex={1}>
+            <Flex ref={experienceRef} position={'relative'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null} flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto" py={'30px'} zIndex={1}>
                 <Grid position={'relative'} templateColumns={columnLayout} templateRows='repeat(5, 1fr)' gap={2}>
                     <GridItem bg="white"
                               colSpan={isMobile ? 1 : 3}
@@ -31,6 +31,7 @@ const Scroll = ({isMobile, viewportHeight}) => {
                     </GridItem>
                     <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems="center">
                         <Circle
+                            ref={ref}
                             m={'20px'}
                             bg="#ce016d"
                             size={'150px'}
@@ -90,7 +91,7 @@ const Scroll = ({isMobile, viewportHeight}) => {
                             <Heading size={'md'}>ReactGirls Academy</Heading>
                         </Box>
                     </GridItem>
-                    <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems="center">
+                    <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems='flex-end'>
                         <Circle
                             m={'20px'}
                             bg="#ce016d"
