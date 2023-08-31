@@ -19,7 +19,7 @@ import {
 import {useHover} from "./useHover"
 
 
-const Skills = ({isMobile, viewportHeight}) => {
+const Skills = ({isMobile, viewportHeight, skillsRef}) => {
     const cssHover = useHover()
     const firebaseHover = useHover()
     const htmlHover = useHover()
@@ -27,7 +27,7 @@ const Skills = ({isMobile, viewportHeight}) => {
     const jsHover = useHover()
 
     return (
-        <Flex position={'relative'} bg={'#ce016d'} flexDir={'column'} style={!isMobile && viewportHeight>=575?{ scrollSnapAlign: 'start', height: '100vh'}: null}>
+        <Flex ref={skillsRef} position={'relative'} bg={'#ce016d'} flexDir={'column'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null}>
             <Flex maxW="75%" py={'30px'} m={'auto'}>
             <Heading  size="lg">
                 Skills
