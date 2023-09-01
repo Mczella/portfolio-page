@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import {
     Box,
     Flex,
@@ -11,13 +11,16 @@ import {
     Circle,
     Badge,
 } from "@chakra-ui/react"
+import {inView, motion, useInView} from "framer-motion";
 
-const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
+const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}) => {
     const columnLayout = useBreakpointValue({base: "1fr", lg: "repeat(7, 1fr)"})
+    const ref = useRef(null)
+    const isInView = useInView(ref)
+
 
     return (
-        <>
-            <Flex ref={experienceRef} position={'relative'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null} flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto" py={'30px'} zIndex={1}>
+        <><Flex ref={experienceRef} position={'relative'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null} flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto" py={'30px'} zIndex={1}>
                 <Grid position={'relative'} templateColumns={columnLayout} templateRows='repeat(5, 1fr)' gap={2}>
                     <GridItem bg="white"
                               colSpan={isMobile ? 1 : 3}
@@ -31,9 +34,8 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
                     </GridItem>
                     <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems="center">
                         <Circle
-                            ref={ref}
                             m={'20px'}
-                            bg="#ce016d"
+                            bg={newColor}
                             size={'150px'}
                             color={'white'}
                         >
@@ -55,8 +57,8 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
                             <Text>A Python adaptation of Flappy Bird written as a means to practice and apply the skills
                                 I acquired through the Pyladies course.</Text>
 
-                            <Badge position={'relative'} zIndex={2} colorScheme={'pink'} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/FlappyBird'} color='pink.400' isExternal>
+                            <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
+                                <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>
@@ -70,8 +72,8 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
                             <Heading size={'sm'}>Rohlik.cz Shopping Automation</Heading>
                             <Text>A Python project aimed at managing groceries and automating shopping.</Text>
 
-                            <Badge position={'relative'} zIndex={2} colorScheme={'pink'} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/FlappyBird'} color='pink.400' isExternal>
+                            <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
+                                <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>
@@ -94,7 +96,7 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
                     <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems='flex-end'>
                         <Circle
                             m={'20px'}
-                            bg="#ce016d"
+                            bg={newColor}
                             size={'150px'}
                             color={'white'}
                         >
@@ -115,8 +117,8 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
                             <Heading size={'sm'}>Bomberman</Heading>
                             <Text>A JavaScript project featuring a fully functional classic game developed during my
                                 time at the ReactGirls Academy and continued afterwards.</Text>
-                        <Badge position={'relative'} zIndex={2} colorScheme={'pink'} px={2} rounded={'full'}>
-                            <Link href={'https://github.com/Mczella/FlappyBird'} color='pink.400' isExternal>
+                        <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
+                            <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
                                 Check out the code here
                             </Link>
                         </Badge>
@@ -143,8 +145,8 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, ref}) => {
                                 create,
                                 manage, and reserve gifts, as well as manage user accounts.</Text>
 
-                            <Badge position={'relative'} zIndex={2} colorScheme={'pink'} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/FlappyBird'} color='pink.400' isExternal>
+                            <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
+                                <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>

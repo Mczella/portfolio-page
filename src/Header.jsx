@@ -1,19 +1,9 @@
-import {
-    Box,
-    Flex,
-    Spacer,
-    Stack,
-    Text,
-    Image,
-    Button,
-    ButtonGroup,
-    useBreakpointValue
-} from "@chakra-ui/react"
+import {Box, Button, ButtonGroup, Flex, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react"
 import React, {useEffect, useRef, useState} from "react"
 import {ReactSketchCanvas} from "react-sketch-canvas"
 import Scroll from "./Scroll"
 import Skills from "./Skills"
-import {motion, useAnimate, useInView} from "framer-motion"
+import {motion, useAnimate} from "framer-motion"
 import Name from "./Name"
 import Contact from "./Contact"
 import useScroll from "./UseScroll";
@@ -33,9 +23,65 @@ const Header = () => {
     const [experienceRef, scrollToComponent2] = useScroll()
     const [contactRef, scrollToComponent3] = useScroll()
     const [topRef, scrollToComponent4] = useScroll()
-    const { ref, inView } = useInView({
-        triggerOnce: true, // Only trigger once when the element comes into view
-    })
+    const [colorTheme, setColorTheme] = useState('pink')
+
+    const getRandomColor = (colorThemes, colorTheme) => {
+        const colors = Object.keys(colorThemes)
+        let randomColor
+
+        do {
+            randomColor = colors[Math.floor(Math.random() * colors.length)]
+        } while (randomColor === colorTheme)
+        console.log(randomColor)
+        return randomColor
+    }
+
+    const handleColorChange = () => {
+        const randomColor = getRandomColor(colorThemes)
+        setColorTheme(randomColor)
+    }
+
+
+
+    const colorThemes = {
+        'red': {
+            colorScheme: 'red',
+            color: 'red.500'
+        },
+        'pink': {
+            colorScheme: 'pink',
+            color: '#ce016d'
+        },
+        'blue': {
+            colorScheme: 'blue',
+            color: 'blue.500'
+        },
+        'green': {
+            colorScheme: 'green',
+            color: 'green.500'
+        },
+        'purple': {
+            colorScheme: 'purple',
+            color: 'purple.500'
+        },
+        'orange': {
+            colorScheme: 'orange',
+            color: 'orange.500'
+        },
+        'teal': {
+            colorScheme: 'teal',
+            color: 'teal.500'
+        },
+        'cyan': {
+            colorScheme: 'cyan',
+            color: 'cyan.500'
+        },
+        'yellow': {
+            colorScheme: 'yellow',
+            color: 'yellow.500'
+        }
+    }
+
 
     useEffect(() => {
         setViewportHeight(visualViewport.height)
@@ -156,12 +202,8 @@ const Header = () => {
             }
              height={'100vh'}>
             <Flex flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto">
-                <motion.div initial={{ height: 0 }}
-                            animate={{ height: inView ? '100vh' : 0 }}
-                            transition={{ duration: 0.5 }}>
-                <Box bg={"#ce016d"} w='10px' h={boxHeight} position="fixed" zIndex={-1}>
+                <Box bg={colorThemes[colorTheme]?.color} w='10px' h={boxHeight} position="fixed" zIndex={-1}>
                 </Box>
-                </motion.div>
             </Flex>
 
             {isDrawing ? (
@@ -229,7 +271,17 @@ const Header = () => {
             :
             null}
 
-            <Flex bg={'#ce016d'}
+            <Button
+                onClick={handleColorChange}
+                size={'xs'}
+                position="fixed"
+                zIndex={2}
+                top="20px"
+                right="20px">
+                Try me
+            </Button>
+
+            <Flex bg={colorThemes[colorTheme]?.color}
                   direction={['column', 'column', 'column', 'row']}
                   justify={'space-between'}
                   h={'100vh'}
@@ -285,12 +337,12 @@ const Header = () => {
                     </Box>
                 </Flex>
             </Flex>
-            <Scroll isMobile={isMobile} viewportHeight={viewportHeight} experienceRef={experienceRef} ref={ref}/>
+            <Scroll isMobile={isMobile} viewportHeight={viewportHeight} experienceRef={experienceRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
 
 
-            <Skills isMobile={isMobile} viewportHeight={viewportHeight} skillsRef={skillsRef}/>
+            <Skills isMobile={isMobile} viewportHeight={viewportHeight} skillsRef={skillsRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
 
-            <Contact isMobile={isMobile} viewportHeight={viewportHeight} contactRef={contactRef}/>
+            <Contact isMobile={isMobile} viewportHeight={viewportHeight} contactRef={contactRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
         </Box>)
 }
 
