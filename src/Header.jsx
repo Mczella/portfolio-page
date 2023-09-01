@@ -7,6 +7,8 @@ import {motion, useAnimate} from "framer-motion"
 import Name from "./Name"
 import Contact from "./Contact"
 import useScroll from "./UseScroll";
+import SwitchButton from "./SwitchButton";
+
 
 
 const Header = () => {
@@ -25,19 +27,19 @@ const Header = () => {
     const [topRef, scrollToComponent4] = useScroll()
     const [colorTheme, setColorTheme] = useState('pink')
 
-    const getRandomColor = (colorThemes, colorTheme) => {
+    const getRandomColor = (colorThemes) => {
         const colors = Object.keys(colorThemes)
-        let randomColor
+        const randomColor = colors[Math.floor(Math.random() * colors.length)]
 
-        do {
-            randomColor = colors[Math.floor(Math.random() * colors.length)]
-        } while (randomColor === colorTheme)
         console.log(randomColor)
         return randomColor
     }
 
     const handleColorChange = () => {
-        const randomColor = getRandomColor(colorThemes)
+        let randomColor
+        do {
+            randomColor = getRandomColor(colorThemes)
+        } while (randomColor === colorTheme)
         setColorTheme(randomColor)
     }
 
@@ -270,16 +272,14 @@ const Header = () => {
                 </ButtonGroup>
             :
             null}
-
-            <Button
-                onClick={handleColorChange}
-                size={'xs'}
-                position="fixed"
+            <Box
                 zIndex={2}
-                top="20px"
-                right="20px">
-                Try me
-            </Button>
+                position="fixed"
+                width={'40px'}
+                top="40px"
+                right="40px">
+            <SwitchButton handleColorChange={handleColorChange}/>
+            </Box>
 
             <Flex bg={colorThemes[colorTheme]?.color}
                   direction={['column', 'column', 'column', 'row']}
