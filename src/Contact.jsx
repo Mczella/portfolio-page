@@ -9,7 +9,7 @@ const Skills = ({isMobile, viewportHeight, contactRef}) => {
         <Flex ref={contactRef} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null} position={'relative'} flexDir={'column'} >
             <Flex maxW="75%" py={'30px'} m={'auto'}>
                 <Heading  size="xl">
-                    Contact and more informations
+                    Contact and more information
                 </Heading>
             </Flex>
         </Flex>
