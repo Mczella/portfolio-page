@@ -219,7 +219,7 @@ const Header = () => {
                 :
                 null}
             <Box
-                zIndex={2}
+                zIndex={3}
                 position="absolute"
                 width={'40px'}
                 top="40px"
@@ -228,21 +228,21 @@ const Header = () => {
             </Box>
 
             <Flex bg={colorThemes[colorTheme]?.color}
-                  direction={['column', 'column', 'column', 'row']}
+                  direction={['column', 'column', 'column', 'row', 'row']}
                   justify={'space-between'}
                   h={'100vh'}
                   style={{scrollSnapAlign: 'start'}}
                   position={'relative'}
                   ref={topRef}>
 
-            <Box position={'absolute'} height={'100%'} width={'100%'}>
-            <CircleGenerator isMobile={isMobile}/>
+            <Box position={'absolute'} height={'100%'} width={'100%'} zIndex={0}>
+            <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
             </Box>
                 <Stack
                     width={'100%'}
                     height={'100%'}
                     position="absolute"
-                    style={{zIndex: 1}}>
+                    style={{zIndex: 2}}>
                     {isDrawing ? (
                             <ReactSketchCanvas
                                 style={{border: 'none'}}
@@ -258,7 +258,8 @@ const Header = () => {
                 </Stack>
 
                 <Box py={['10px', '25px', '50px']} pr={['10px', '25px', '50px']}>
-                    <Image zIndex={0}
+                    <Box zIndex={1}>
+                    <Image position={'relative'}
                            objectFit='contain'
                            minW={'200px'}
                            height={'400px'}
@@ -267,10 +268,11 @@ const Header = () => {
                            left={0}
                            src='me.png'
                            alt='Me'/>
+                    </Box>
                     {isDrawing ? (
                         <ButtonGroup
                             size={'xs'}
-                            zIndex={2}
+                            zIndex={3}
                             position="relative"
                             variant='outline'
                             isAttached
@@ -300,7 +302,7 @@ const Header = () => {
                             size={'xs'}
                             _hover={{color: 'pink'}}
                             position="relative"
-                            zIndex={2}
+                            zIndex={3}
                             variant={'outline'}
                             color={'white'}
                             colorScheme={colorThemes[colorTheme]?.colorScheme}
@@ -312,17 +314,17 @@ const Header = () => {
                     )}
                 </Box>
 
-                <Flex direction={'column'} alignItems="center" justifyContent="center">
-                    <Box pr={['0', '50px', '50px', '100px']}
-                         pt={['20px', '50px', '50px', '100px']}
-                         width={['80%', '80%', '80%', '800px']}>
+                <Flex direction={'column'} alignItems="left" justifyContent="center">
+                    <Box px={['50px', '50px', '50px', '100px', '100px']}
+                         pt={['20px', '10px', '10px', '100px']}
+                         width={['90%', '80%', '500px', '100%', '800px']}>
                         <Name/>
                     </Box>
-                    <Box w={['80%', '80%', '80%', '800px']}
-                         pr={['10px', '50px', '50px', '100px']}
-                         py={['20px', '30px', '30px', '50px']}>
+                    <Box w={['80%', '80%', '500px', '100%', '800px']}
+                         px={['50px', '50px', '50px', '100px', '100px']}
+                         py={['20px', '10px', '10px', '50px']}>
                         <motion.div variants={about} initial="hidden" animate="visible">
-                            <Text color="white" fontSize={['2xl', '3xl', '3xl', '5xl']} textAlign="left">
+                            <Text color="white" fontSize={['2xl', '3xl', '3xl', '4xl', '5xl']} textAlign="left">
                                 SOFTWARE DEVELOPER
                             </Text>
                         </motion.div>
@@ -334,7 +336,7 @@ const Header = () => {
 
 
             <Skills isMobile={isMobile} viewportHeight={viewportHeight} skillsRef={skillsRef}
-                    newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
+                    newColor={colorThemes[colorTheme]?.color} colorTheme={colorTheme}/>
 
             <Contact isMobile={isMobile} viewportHeight={viewportHeight} contactRef={contactRef}
                      newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
