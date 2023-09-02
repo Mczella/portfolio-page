@@ -73,7 +73,7 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}
                             <Text>A Python project aimed at managing groceries and automating shopping.</Text>
 
                             <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
+                                <Link href={'https://github.com/Mczella/Rohlik.cz-automation'} color={newColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>
@@ -116,10 +116,10 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}
                         <Box textAlign={isMobile ? "justify" : "right"}>
                             <Heading size={'sm'}>Bomberman</Heading>
                             <Text>A JavaScript project featuring a fully functional classic game developed during my
-                                time at the ReactGirls Academy and continued afterwards.</Text>
+                                time at the ReactGirls Academy and continued afterwards. Check out the code on my GitHub page.</Text>
                         <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                            <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
-                                Check out the code here
+                            <Link href={'https://javascript-bomberman.netlify.app/'} color={newColor} isExternal>
+                                Play here
                             </Link>
                         </Badge>
                         </Box>
@@ -146,7 +146,7 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}
                                 manage, and reserve gifts, as well as manage user accounts.</Text>
 
                             <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
+                                <Link href={'https://github.com/Mczella/Wishlist'} color={newColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>
@@ -158,7 +158,7 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}
                               style={{minWidth: '200px'}}>
                         <Box textAlign={isMobile ? "justify" : "left"}>
                             <Heading size={'sm'}>Pyladies Data Course</Heading>
-                            <Text>Hopefully starting in September.</Text>
+                            <Text>Starting in September.</Text>
                         </Box>
                     </GridItem>
                 </Grid>
