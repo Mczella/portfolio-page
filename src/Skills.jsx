@@ -17,9 +17,10 @@ import {
     ReactLogo
 } from "./Logos"
 import {useHover} from "./useHover"
+import CircleGenerator from "./CircleGenerator";
 
 
-const Skills = ({isMobile, viewportHeight, skillsRef, newColor, colorScheme}) => {
+const Skills = ({isMobile, viewportHeight, skillsRef, newColor, colorTheme}) => {
     const cssHover = useHover()
     const firebaseHover = useHover()
     const htmlHover = useHover()
@@ -28,8 +29,11 @@ const Skills = ({isMobile, viewportHeight, skillsRef, newColor, colorScheme}) =>
 
     return (
         <Flex ref={skillsRef} position={'relative'} bg={newColor} flexDir={'column'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null}>
+            <Box position={'absolute'} height={'100%'} width={'100%'} zIndex={0}>
+                <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
+            </Box>
             <Flex maxW="75%" py={'30px'} m={'auto'}>
-            <Heading  size="lg" color={'white'}>
+            <Heading  size="xl" color={'white'}>
                 Skills
             </Heading>
             </Flex>
