@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useRef} from "react"
 
-const CircleGenerator = ({isMobile}) => {
+const CircleGenerator = ({isMobile, colorTheme}) => {
     const svgRef = useRef(null)
     const generateRandomNumber = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min
@@ -53,7 +53,7 @@ const CircleGenerator = ({isMobile}) => {
         return () => {
             svg.innerHTML = ''
         }
-    }, [])
+    }, [colorTheme])
 
     const viewBox = isMobile? `0 0 600 900` : `0 0 900 600`
 
