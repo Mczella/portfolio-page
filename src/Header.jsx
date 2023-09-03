@@ -218,7 +218,7 @@ const Header = () => {
                             position="relative"
                             variant='outline'
                             isAttached
-                            colorScheme={chosenColorScheme}
+                            colorScheme={'white'}
                             color={'white'}
                             left="40px"
                         >
