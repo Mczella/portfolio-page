@@ -93,8 +93,8 @@ const Header = () => {
         },
         'yellow': {
             colorScheme: 'yellow',
-            color: '#ce9e01',
-            darkColor: '#8f7101'
+            color: '#dcb001',
+            darkColor: '#b48f01'
         }
     }
 
