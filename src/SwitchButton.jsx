@@ -24,7 +24,7 @@ const SwitchButton = ({handleColorChange, colorThemes, colorTheme}) => {
             initial="hidden"
             opacity={0.5}
             animate="visible"
-            fill={colorThemes[colorTheme]?.colorScheme}
+            fill={colorThemes[colorTheme]?.darkColor}
             viewBox="0 0 32 32"
             data-name="Layer 1" id="Layer_1"
             xmlns="http://www.w3.org/2000/svg">
