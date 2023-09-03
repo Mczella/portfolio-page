@@ -17,16 +17,21 @@ const Header = () => {
     const [isDrawing, setIsDrawing] = useState(false)
     const [isErasing, setIsErasing] = useState(false)
     const [boxHeight, setBoxHeight] = useState(0)
+    const boxRef = useRef(null)
     const [prevScrollY, setPrevScrollY] = useState(0)
     const [scope, animate] = useAnimate()
     const [isMobile, setIsMobile] = useState(false)
     const [isHuge, setIsHuge] = useState(false)
     const [viewportHeight, setViewportHeight] = useState(null)
+    const [viewportWidth, setViewportWidth] = useState(null)
     const [skillsRef, scrollToComponent1] = useScroll()
     const [experienceRef, scrollToComponent2] = useScroll()
     const [contactRef, scrollToComponent3] = useScroll()
     const [topRef, scrollToComponent4] = useScroll()
     const [colorTheme, setColorTheme] = useState('pink')
+    const [maxScroll, setMaxScroll] = useState(0)
+    const [scrollPosition, setScrollPosition] = useState(0)
+
 
     const getRandomColor = (colorThemes) => {
         const colors = Object.keys(colorThemes)
@@ -87,32 +92,54 @@ const Header = () => {
 
     useEffect(() => {
         setViewportHeight(visualViewport.height)
+        setViewportWidth(visualViewport.width)
     }, [])
 
     visualViewport.onresize = () => {
         setViewportHeight(visualViewport.height)
+        setViewportWidth(visualViewport.width)
     }
 
     console.log(viewportHeight)
 
+
+
     const handleScroll = () => {
-        const maxScroll = window.innerHeight
-        const scrollPosition = window.scrollY
+        const maxScroll = boxRef.current.clientHeight
+        const scrollPosition = boxRef.current.scrollTop
+        setMaxScroll(maxScroll)
+        setScrollPosition(scrollPosition)
+
+        console.log({maxScroll})
+        console.log({scrollPosition})
 
         if (scrollPosition < maxScroll) {
             if (scrollPosition > prevScrollY) {
-                setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
+                isMobile?
+                    setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
+                        :
+                    setBoxHeight((scrollPosition / maxScroll) * 200 + "%")
             } else {
-                setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
+                isMobile?
+                    setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
+                    :
+                    setBoxHeight((scrollPosition / maxScroll) * 200 + "%")
             }
             setPrevScrollY(scrollPosition)
         }
     }
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll)
+        const boxRef = document.getElementById("scroll-box")
+
+        if (boxRef) {
+            boxRef.addEventListener("scroll", handleScroll)
+        }
+
         return () => {
-            window.removeEventListener("scroll", handleScroll)
+            if (boxRef) {
+                boxRef.removeEventListener("scroll", handleScroll)
+            }
         }
     }, [])
 
@@ -196,7 +223,9 @@ const Header = () => {
 
 
     return (
-        <Box flexDir={'column'}
+        <Box ref={boxRef}
+             id="scroll-box"
+             flexDir={'column'}
              style={
                  !isMobile && viewportHeight >= 665 ?
                      {scrollSnapType: 'y mandatory', overflowY: 'scroll'}
@@ -215,6 +244,10 @@ const Header = () => {
                         experience={scrollToComponent2}
                         contact={scrollToComponent3}
                         header={scrollToComponent4}
+                        maxScroll={maxScroll}
+                        scrollPosition={scrollPosition}
+                        colorThemes={colorThemes}
+                        colorTheme={colorTheme}
                     />
                 :
                 null}
@@ -235,8 +268,8 @@ const Header = () => {
                   position={'relative'}
                   ref={topRef}>
 
-            <Box position={'absolute'} height={'100%'} width={'100%'} zIndex={0}>
-            <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
+            <Box position={'absolute'} height={isMobile? '100dvh' : null} width={isMobile? '100%' : '100%'} zIndex={0}>
+            <CircleGenerator isMobile={isMobile} colorTheme={colorTheme} viewportWidth={viewportWidth} viewportHeight={viewportHeight}/>
             </Box>
                 <Stack
                     width={'100%'}
@@ -300,7 +333,7 @@ const Header = () => {
                         </ButtonGroup>) : (
                         <Button
                             size={'xs'}
-                            _hover={{color: 'pink'}}
+                            _hover={{color: colorThemes[colorTheme]?.color, background: 'white'}}
                             position="relative"
                             zIndex={3}
                             variant={'outline'}
@@ -331,8 +364,8 @@ const Header = () => {
                     </Box>
                 </Flex>
             </Flex>
-            <Scroll isMobile={isMobile} viewportHeight={viewportHeight} experienceRef={experienceRef}
-                    newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
+
+            <Scroll isMobile={isMobile} viewportHeight={viewportHeight} experienceRef={experienceRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
 
 
             <Skills isMobile={isMobile} viewportHeight={viewportHeight} skillsRef={skillsRef}
