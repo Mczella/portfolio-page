@@ -1,7 +1,7 @@
 import React from "react"
 import {Stack} from "@chakra-ui/react";
-import CircleFill from "../CircleFill";
-import CircleStroke from "../CircleStroke";
+import CircleFill from "./CircleFill";
+import CircleStroke from "./CircleStroke";
 
 const NavigationButtons = ({skills, experience, contact, header, scrollPosition, maxScroll}) => {
     console.log({scrollPosition})
