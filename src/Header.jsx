@@ -1,4 +1,13 @@
-import {Box, Button, ButtonGroup, Flex, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react"
+import {
+    Box,
+    Button,
+    ButtonGroup,
+    Flex,
+    Image,
+    Stack,
+    Text,
+    useBreakpointValue
+} from "@chakra-ui/react"
 import React, {useContext, useEffect, useRef, useState} from "react"
 import {ReactSketchCanvas} from "react-sketch-canvas"
 import Scroll from "./Scroll"
@@ -11,6 +20,7 @@ import SwitchButton from "./SwitchButton"
 import NavigationButtons from "./NavigationButtons"
 import CircleGenerator from "./CircleGenerator"
 import {ViewportContext} from "./ViewportContext"
+import {ColorThemeContext} from "./ColorThemeContext";
 
 
 const Header = () => {
@@ -26,77 +36,16 @@ const Header = () => {
     const [experienceRef, scrollToComponent2] = useScroll()
     const [contactRef, scrollToComponent3] = useScroll()
     const [topRef, scrollToComponent4] = useScroll()
-    const [colorTheme, setColorTheme] = useState('pink')
     const [maxScroll, setMaxScroll] = useState(0)
     const [scrollPosition, setScrollPosition] = useState(0)
     const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange, colorTheme} = useContext(ColorThemeContext)
 
 
 
-    const getRandomColor = (colorThemes) => {
-        const colors = Object.keys(colorThemes)
-        const randomColor = colors[Math.floor(Math.random() * colors.length)]
-
-        console.log(randomColor)
-        return randomColor
-    }
-
-    const handleColorChange = () => {
-        let randomColor
-        do {
-            randomColor = getRandomColor(colorThemes)
-        } while (randomColor === colorTheme)
-        setColorTheme(randomColor)
-    }
 
 
-    const colorThemes = {
-        'red': {
-            colorScheme: 'red',
-            color: '#b90202',
-            darkColor: '#850000'
-        },
-        'pink': {
-            colorScheme: 'pink',
-            color: '#ce016d',
-            darkColor: '#810042'
-        },
-        'blue': {
-            colorScheme: 'blue',
-            color: '#0153ce',
-            darkColor: '#003886'
-        },
-        'green': {
-            colorScheme: 'green',
-            color: '#159b00',
-            darkColor: '#0e6701'
-        },
-        'purple': {
-            colorScheme: 'purple',
-            color: '#6701bb',
-            darkColor: '#44007c'
-        },
-        'orange': {
-            colorScheme: 'orange',
-            color: '#ce6801',
-            darkColor: '#8c4601'
-        },
-        'teal': {
-            colorScheme: 'teal',
-            color: '#01b69b',
-            darkColor: '#017a6a'
-        },
-        'cyan': {
-            colorScheme: 'cyan',
-            color: '#01c7ce',
-            darkColor: '#00787c'
-        },
-        'yellow': {
-            colorScheme: 'yellow',
-            color: '#dcb001',
-            darkColor: '#b48f01'
-        }
-    }
+
 
     console.log({viewportHeight})
     console.log({viewportWidth})
@@ -233,7 +182,7 @@ const Header = () => {
              }
              height={'100vh'}>
             <Flex flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto">
-                <Box bg={colorThemes[colorTheme]?.color} w='10px' h={boxHeight} position="fixed" zIndex={-1}>
+                <Box bg={chosenColor} w='10px' h={boxHeight} position="fixed" zIndex={-1}>
                 </Box>
             </Flex>
 
@@ -245,8 +194,6 @@ const Header = () => {
                         header={scrollToComponent4}
                         maxScroll={maxScroll}
                         scrollPosition={scrollPosition}
-                        colorThemes={colorThemes}
-                        colorTheme={colorTheme}
                     />
                 :
                 null}
@@ -256,10 +203,10 @@ const Header = () => {
                 width={'40px'}
                 top="40px"
                 right="40px">
-                <SwitchButton handleColorChange={handleColorChange} colorThemes={colorThemes} colorTheme={colorTheme}/>
+                <SwitchButton/>
             </Box>
 
-            <Flex bg={colorThemes[colorTheme]?.color}
+            <Flex bg={chosenColor}
                   direction={['column', 'column', 'column', 'row', 'row']}
                   justify={'space-between'}
                   h={'100vh'}
@@ -268,7 +215,7 @@ const Header = () => {
                   ref={topRef}>
 
             <Box position={'absolute'} height={isMobile? '100dvh' : null} width={isMobile? '100%' : '100%'} zIndex={0}>
-            <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
+            <CircleGenerator isMobile={isMobile}/>
             </Box>
                 <Stack
                     width={'100%'}
@@ -308,13 +255,13 @@ const Header = () => {
                             position="relative"
                             variant='outline'
                             isAttached
-                            colorScheme={colorThemes[colorTheme]?.color}
+                            colorScheme={chosenColorScheme}
                             color={'white'}
                             left="40px"
                         >
                             <Button variant={isErasing ? 'solid' : 'outline'}
                                     onClick={handleEraseClick}
-                                    colorScheme={isErasing ? null : colorThemes[colorTheme]?.color}>
+                                    colorScheme={isErasing ? null : chosenColor}>
                                 Erase
                             </Button>
                             <Button onClick={handleClearClick}>
@@ -332,12 +279,12 @@ const Header = () => {
                         </ButtonGroup>) : (
                         <Button
                             size={'xs'}
-                            _hover={{color: colorThemes[colorTheme]?.color, background: 'white'}}
+                            _hover={{color: chosenColor, background: 'white'}}
                             position="relative"
                             zIndex={3}
                             variant={'outline'}
                             color={'white'}
-                            colorScheme={colorThemes[colorTheme]?.colorScheme}
+                            colorScheme={chosenColorScheme}
                             onClick={handleDrawClick}
                             left={['20px', '40px']}
                         >
@@ -364,14 +311,12 @@ const Header = () => {
                 </Flex>
             </Flex>
 
-            <Scroll isMobile={isMobile} experienceRef={experienceRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
+            <Scroll isMobile={isMobile} experienceRef={experienceRef}/>
 
 
-            <Skills isMobile={isMobile} skillsRef={skillsRef}
-                    newColor={colorThemes[colorTheme]?.color} colorTheme={colorTheme}/>
+            <Skills isMobile={isMobile} skillsRef={skillsRef}/>
 
-            <Contact isMobile={isMobile} contactRef={contactRef}
-                     newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme} darkColor={colorThemes[colorTheme]?.darkColor}/>
+            <Contact isMobile={isMobile} contactRef={contactRef}/>
         </Box>)
 }
 

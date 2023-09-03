@@ -1,8 +1,11 @@
 import {motion} from "framer-motion"
-import React from "react"
+import React, {useContext} from "react"
 import {background} from "@chakra-ui/react";
+import {ColorThemeContext} from "./ColorThemeContext";
 
-const SwitchButton = ({handleColorChange, colorThemes, colorTheme}) => {
+const SwitchButton = () => {
+    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
+
 
     const pathVariants = {
         hidden: {
@@ -24,7 +27,7 @@ const SwitchButton = ({handleColorChange, colorThemes, colorTheme}) => {
             initial="hidden"
             opacity={0.5}
             animate="visible"
-            fill={colorThemes[colorTheme]?.darkColor}
+            fill={chosenDarkColor}
             viewBox="0 0 32 32"
             data-name="Layer 1" id="Layer_1"
             xmlns="http://www.w3.org/2000/svg">

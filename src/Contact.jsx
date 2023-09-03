@@ -6,9 +6,11 @@ import {
     Heading, Link, SimpleGrid, Text,
 } from "@chakra-ui/react";
 import {ViewportContext} from "./ViewportContext";
+import {ColorThemeContext} from "./ColorThemeContext";
 
-const Contact = ({isMobile, colorScheme, darkColor, contactRef}) => {
+const Contact = ({isMobile, contactRef}) => {
     const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const {chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
     return (
         <Flex ref={contactRef}
@@ -19,18 +21,18 @@ const Contact = ({isMobile, colorScheme, darkColor, contactRef}) => {
                     <Heading py={'30px'} size="xl" textAlign={'center'}>
                         More information
                     </Heading>
-                <Box boxShadow={"md"} rounded={"lg"} shadow={`3px 4px 10px ${darkColor}`}>
+                <Box boxShadow={"md"} rounded={"lg"} shadow={`3px 4px 10px ${chosenDarkColor}`}>
                     <SimpleGrid columns={2} spacing={10} minChildWidth={'200px'} m={'30px'}>
                         <GridItem>
                             <Heading fontSize={'xl'} mb={'10px'}>
                                 Contact
                             </Heading>
                             <Text>markaczova@gmail.com</Text>
-                            <Badge colorScheme={colorScheme} px={2} rounded={'full'}>
+                            <Badge colorScheme={chosenColorScheme} px={2} rounded={'full'}>
                             <Link href={'https://github.com/Mczella'} isExternal>GitHub</Link>
                             </Badge>
                             <Text></Text>
-                            <Badge colorScheme={colorScheme} px={2} rounded={'full'}>
+                            <Badge colorScheme={chosenColorScheme} px={2} rounded={'full'}>
                             <Link href={'https://linkedin.com/in/michaela-markaczova'} isExternal>LinkedIn</Link>
                             </Badge>
                         </GridItem>

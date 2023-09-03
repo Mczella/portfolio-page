@@ -13,10 +13,12 @@ import {
 } from "@chakra-ui/react"
 import {inView, motion, useInView} from "framer-motion";
 import {ViewportContext} from "./ViewportContext";
+import {ColorThemeContext} from "./ColorThemeContext";
 
-const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
+const Scroll = ({isMobile, experienceRef}) => {
     const columnLayout = useBreakpointValue({base: "1fr", lg: "repeat(7, 1fr)"})
     const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
 
 
@@ -45,7 +47,7 @@ const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
                         <Circle
                             mt={'20px'}
                             mx={'20px'}
-                            bg={newColor}
+                            bg={chosenColor}
                             size={'150px'}
                             color={'white'}
                         >
@@ -68,8 +70,8 @@ const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
                             <Text bg="white">A Python adaptation of Flappy Bird written as a means to practice and apply the skills
                                 I acquired through the Pyladies course.</Text>
 
-                            <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/FlappyBird'} color={newColor} isExternal>
+                            <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
+                                <Link href={'https://github.com/Mczella/FlappyBird'} color={chosenColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>
@@ -83,8 +85,8 @@ const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
                             <Heading py={'10px'} textAlign={'left'} bg="white" size={'md'}>Rohlik.cz Shopping Automation Project</Heading>
                             <Text bg="white">A Python project aimed at managing groceries and automating shopping.</Text>
 
-                            <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/Rohlik.cz-automation'} color={newColor} isExternal>
+                            <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
+                                <Link href={'https://github.com/Mczella/Rohlik.cz-automation'} color={chosenColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>
@@ -101,7 +103,7 @@ const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
                     <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems='flex-end'>
                         <Circle
                             m={'20px'}
-                            bg={newColor}
+                            bg={chosenColor}
                             size={'150px'}
                             color={'white'}
                         >
@@ -122,8 +124,8 @@ const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
                             <Heading py={'10px'} textAlign={isMobile? 'left' : 'right'} bg="white" size={'md'}>ReactGirls Academy - Bomberman</Heading>
                             <Text bg="white">A JavaScript project featuring a fully functional classic game developed during my
                                 time at the ReactGirls Academy and continued afterwards. Check out the code on my GitHub page.</Text>
-                        <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                            <Link href={'https://javascript-bomberman.netlify.app/'} color={newColor} isExternal>
+                        <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
+                            <Link href={'https://javascript-bomberman.netlify.app/'} color={chosenColor} isExternal>
                                 Play here
                             </Link>
                         </Badge>
@@ -141,8 +143,8 @@ const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
                                 create,
                                 manage, and reserve gifts, as well as manage user accounts.</Text>
 
-                            <Badge position={'relative'} zIndex={2} colorScheme={colorScheme} px={2} rounded={'full'}>
-                                <Link href={'https://github.com/Mczella/Wishlist'} color={newColor} isExternal>
+                            <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
+                                <Link href={'https://github.com/Mczella/Wishlist'} color={chosenColor} isExternal>
                                     Check out the code here
                                 </Link>
                             </Badge>

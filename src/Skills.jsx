@@ -19,21 +19,24 @@ import {
 import {useHover} from "./useHover"
 import CircleGenerator from "./CircleGenerator";
 import {ViewportContext} from "./ViewportContext";
+import {ColorThemeContext} from "./ColorThemeContext";
 
 
-const Skills = ({isMobile, skillsRef, newColor, colorTheme}) => {
+const Skills = ({isMobile, skillsRef}) => {
     const cssHover = useHover()
     const firebaseHover = useHover()
     const htmlHover = useHover()
     const pythonHover = useHover()
     const jsHover = useHover()
     const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const {chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
+
 
 
     return (
-        <Flex ref={skillsRef} position={'relative'} bg={newColor} flexDir={'column'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null}>
+        <Flex ref={skillsRef} position={'relative'} bg={chosenColor} flexDir={'column'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null}>
             <Box position={'absolute'} height={'100%'} width={'100%'} zIndex={0}>
-                <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
+                <CircleGenerator isMobile={isMobile}/>
             </Box>
             <Flex maxW="75%" py={'30px'} m={'auto'} mt={'50px'}>
             <Heading  size="xl" color={'white'}>

@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 import '@fontsource-variable/montserrat';
 import {ViewportProvider} from "./ViewportContext"
+import {ColorThemeProvider} from "./ColorThemeContext";
 
 const customTheme = extendTheme({
     fonts: {
@@ -19,7 +20,9 @@ root.render(
   <React.StrictMode>
       <ChakraProvider theme={customTheme}>
           <ViewportProvider>
-            <App />
+              <ColorThemeProvider>
+                <App />
+              </ColorThemeProvider>
           </ViewportProvider>
       </ChakraProvider>
   </React.StrictMode>

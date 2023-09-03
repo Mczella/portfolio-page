@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {Stack} from "@chakra-ui/react";
 import CircleFill from "./CircleFill";
 import CircleStroke from "./CircleStroke";
+import {ColorThemeContext} from "./ColorThemeContext";
 
-const NavigationButtons = ({skills, experience, contact, header, scrollPosition, maxScroll, colorTheme, colorThemes}) => {
+const NavigationButtons = ({skills, experience, contact, header, scrollPosition, maxScroll}) => {
     console.log({scrollPosition})
+    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
+
 
     const handleClick = (arg) => {
         arg()
@@ -18,32 +21,24 @@ const NavigationButtons = ({skills, experience, contact, header, scrollPosition,
                align="center"
                width={'15px'}>
             {scrollPosition === 0 || scrollPosition < maxScroll ?
-            <CircleFill colorThemes={colorThemes}
-                        colorTheme={colorTheme}/>
+            <CircleFill />
                 :
-            <CircleStroke colorThemes={colorThemes}
-                          colorTheme={colorTheme} handleClick={() => handleClick(header)}/>
+            <CircleStroke handleClick={() => handleClick(header)}/>
             }
             {scrollPosition >= maxScroll && scrollPosition < 2*maxScroll?
-                <CircleFill colorThemes={colorThemes}
-                                       colorTheme={colorTheme}/>
+                <CircleFill />
                 :
-                <CircleStroke colorThemes={colorThemes}
-                              colorTheme={colorTheme} handleClick={() => handleClick(experience)}/>
+                <CircleStroke handleClick={() => handleClick(experience)}/>
             }
             {scrollPosition >= 2*maxScroll &&  scrollPosition < 3*maxScroll?
-                <CircleFill colorThemes={colorThemes}
-                            colorTheme={colorTheme}/>
+                <CircleFill />
                 :
-                <CircleStroke colorThemes={colorThemes}
-                              colorTheme={colorTheme} handleClick={() => handleClick(skills)}/>
+                <CircleStroke handleClick={() => handleClick(skills)}/>
             }
             {scrollPosition !== 0 && scrollPosition >= 3*maxScroll?
-                <CircleFill colorThemes={colorThemes}
-                            colorTheme={colorTheme}/>
+                <CircleFill />
                 :
-                <CircleStroke colorThemes={colorThemes}
-                              colorTheme={colorTheme} handleClick={() => handleClick(contact)}/>
+                <CircleStroke handleClick={() => handleClick(contact)}/>
             }
         </Stack>
 
