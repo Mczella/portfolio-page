@@ -11,7 +11,7 @@ const Contact = ({contactRef}) => {
         <Flex ref={contactRef}
               bg={'white'}
               style={!isMobile && viewportHeight >= 665 ? {scrollSnapAlign: 'start', height: '100vh'} : null}
-              position={'relative'} flexDir={'column'} alignItems={'center'}>
+              position={'relative'} flexDir={'column'} alignItems={'center'} pb={'100px'}>
             <Circle
                 mt={'60px'}
                 ml={[0, '240px', '400px', '550px']}
