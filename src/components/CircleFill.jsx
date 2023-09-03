@@ -1,6 +1,6 @@
 import {motion} from "framer-motion"
 import React, {useContext} from "react"
-import {ColorThemeContext} from "./contexts/ColorThemeContext";
+import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
 const CircleFill = () => {
     const {chosenDarkColor} = useContext(ColorThemeContext)
