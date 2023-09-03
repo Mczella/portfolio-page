@@ -32,7 +32,7 @@ const Skills = ({isMobile, viewportHeight, skillsRef, newColor, colorTheme}) => 
             <Box position={'absolute'} height={'100%'} width={'100%'} zIndex={0}>
                 <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
             </Box>
-            <Flex maxW="75%" py={'30px'} m={'auto'}>
+            <Flex maxW="75%" py={'30px'} m={'auto'} mt={'50px'}>
             <Heading  size="xl" color={'white'}>
                 Skills
             </Heading>
