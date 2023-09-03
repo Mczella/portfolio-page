@@ -10,18 +10,18 @@ import {
 } from "@chakra-ui/react"
 import React, {useContext, useEffect, useRef, useState} from "react"
 import {ReactSketchCanvas} from "react-sketch-canvas"
-import Scroll from "./Scroll"
+import Experience from "./Experience"
 import Skills from "./Skills"
 import {motion, useAnimate} from "framer-motion"
-import Name from "./Name"
+import Name from "../Name"
 import Contact from "./Contact"
-import useScroll from "./UseScroll"
+import useScroll from "../hooks/UseScroll"
 import SwitchButton from "./SwitchButton"
 import NavigationButtons from "./NavigationButtons"
 import CircleGenerator from "./CircleGenerator"
-import {ViewportContext} from "./ViewportContext"
-import {ColorThemeContext} from "./ColorThemeContext";
-import {about} from "./animations";
+import {ViewportContext} from "../contexts/ViewportContext"
+import {ColorThemeContext} from "../contexts/ColorThemeContext";
+import {about} from "../animations";
 
 
 const Header = () => {
@@ -274,7 +274,7 @@ const Header = () => {
                 </Flex>
             </Flex>
 
-            <Scroll isMobile={isMobile} experienceRef={experienceRef}/>
+            <Experience isMobile={isMobile} experienceRef={experienceRef}/>
 
 
             <Skills isMobile={isMobile} skillsRef={skillsRef}/>

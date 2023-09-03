@@ -15,11 +15,11 @@ import {
     HtmlColor,
     HtmlWhite, JsColor, JsWhite, PythonColor, PythonWhite,
     ReactLogo
-} from "./Logos"
-import {useHover} from "./useHover"
+} from "../Logos"
+import {useHover} from "../hooks/useHover"
 import CircleGenerator from "./CircleGenerator";
-import {ViewportContext} from "./ViewportContext";
-import {ColorThemeContext} from "./ColorThemeContext";
+import {ViewportContext} from "../contexts/ViewportContext";
+import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
 
 const Skills = ({skillsRef}) => {

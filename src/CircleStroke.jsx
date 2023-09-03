@@ -1,6 +1,6 @@
 import {motion} from "framer-motion";
 import React, {useContext} from "react";
-import {ColorThemeContext} from "./ColorThemeContext";
+import {ColorThemeContext} from "./contexts/ColorThemeContext";
 
 const CircleStroke = ({handleClick}) => {
     const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)

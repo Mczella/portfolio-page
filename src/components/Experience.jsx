@@ -11,10 +11,10 @@ import {
     Circle,
     Badge,
 } from "@chakra-ui/react"
-import {ViewportContext} from "./ViewportContext";
-import {ColorThemeContext} from "./ColorThemeContext";
+import {ViewportContext} from "../contexts/ViewportContext";
+import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
-const Scroll = ({experienceRef}) => {
+const Experience = ({experienceRef}) => {
     const columnLayout = useBreakpointValue({base: "1fr", lg: "repeat(7, 1fr)"})
     const {viewportHeight, isMobile} = useContext(ViewportContext)
     const {chosenColorScheme, chosenColor} = useContext(ColorThemeContext)
@@ -168,5 +168,5 @@ const Scroll = ({experienceRef}) => {
     )
 }
 
-export default Scroll
+export default Experience
 

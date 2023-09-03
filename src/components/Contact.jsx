@@ -5,8 +5,8 @@ import {
     Flex, GridItem,
     Heading, Link, SimpleGrid, Text,
 } from "@chakra-ui/react";
-import {ViewportContext} from "./ViewportContext";
-import {ColorThemeContext} from "./ColorThemeContext";
+import {ViewportContext} from "../contexts/ViewportContext";
+import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
 const Contact = ({contactRef}) => {
     const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)

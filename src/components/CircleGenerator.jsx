@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useMemo, useRef} from "react"
-import {ViewportContext} from "./ViewportContext";
-import {ColorThemeContext} from "./ColorThemeContext";
+import {ViewportContext} from "../contexts/ViewportContext";
+import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
 const CircleGenerator = () => {
     const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)

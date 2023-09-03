@@ -4,8 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 import '@fontsource-variable/montserrat';
-import {ViewportProvider} from "./ViewportContext"
-import {ColorThemeProvider} from "./ColorThemeContext";
+import {ViewportProvider} from "./contexts/ViewportContext"
+import {ColorThemeProvider} from "./contexts/ColorThemeContext";
 
 const customTheme = extendTheme({
     fonts: {
