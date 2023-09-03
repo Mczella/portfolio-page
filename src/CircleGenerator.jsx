@@ -2,8 +2,8 @@ import React, {useContext, useEffect, useMemo, useRef} from "react"
 import {ViewportContext} from "./ViewportContext";
 import {ColorThemeContext} from "./ColorThemeContext";
 
-const CircleGenerator = ({isMobile}) => {
-    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+const CircleGenerator = () => {
+    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
     const {chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange, colorTheme} = useContext(ColorThemeContext)
     const svgRef = useRef(null)
     const generateRandomNumber = (min, max) => {

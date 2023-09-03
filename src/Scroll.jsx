@@ -15,9 +15,9 @@ import {inView, motion, useInView} from "framer-motion";
 import {ViewportContext} from "./ViewportContext";
 import {ColorThemeContext} from "./ColorThemeContext";
 
-const Scroll = ({isMobile, experienceRef}) => {
+const Scroll = ({experienceRef}) => {
     const columnLayout = useBreakpointValue({base: "1fr", lg: "repeat(7, 1fr)"})
-    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
     const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
 

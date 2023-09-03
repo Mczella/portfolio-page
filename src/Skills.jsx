@@ -22,13 +22,13 @@ import {ViewportContext} from "./ViewportContext";
 import {ColorThemeContext} from "./ColorThemeContext";
 
 
-const Skills = ({isMobile, skillsRef}) => {
+const Skills = ({skillsRef}) => {
     const cssHover = useHover()
     const firebaseHover = useHover()
     const htmlHover = useHover()
     const pythonHover = useHover()
     const jsHover = useHover()
-    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
     const {chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
 

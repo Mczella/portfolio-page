@@ -8,8 +8,8 @@ import {
 import {ViewportContext} from "./ViewportContext";
 import {ColorThemeContext} from "./ColorThemeContext";
 
-const Contact = ({isMobile, contactRef}) => {
-    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+const Contact = ({contactRef}) => {
+    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
     const {chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
     return (

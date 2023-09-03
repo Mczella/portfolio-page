@@ -21,6 +21,7 @@ import NavigationButtons from "./NavigationButtons"
 import CircleGenerator from "./CircleGenerator"
 import {ViewportContext} from "./ViewportContext"
 import {ColorThemeContext} from "./ColorThemeContext";
+import {about} from "./Animations";
 
 
 const Header = () => {
@@ -30,27 +31,14 @@ const Header = () => {
     const [boxHeight, setBoxHeight] = useState(0)
     const boxRef = useRef(null)
     const [prevScrollY, setPrevScrollY] = useState(0)
-    const [isMobile, setIsMobile] = useState(false)
-    const [isHuge, setIsHuge] = useState(false)
     const [skillsRef, scrollToComponent1] = useScroll()
     const [experienceRef, scrollToComponent2] = useScroll()
     const [contactRef, scrollToComponent3] = useScroll()
     const [topRef, scrollToComponent4] = useScroll()
     const [maxScroll, setMaxScroll] = useState(0)
     const [scrollPosition, setScrollPosition] = useState(0)
-    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
     const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange, colorTheme} = useContext(ColorThemeContext)
-
-
-
-
-
-
-
-    console.log({viewportHeight})
-    console.log({viewportWidth})
-
-
 
     const handleScroll = () => {
         const maxScroll = boxRef.current.clientHeight
@@ -134,37 +122,7 @@ const Header = () => {
 
     console.log(isDrawing)
 
-    const about = {
-        hidden: {
-            opacity: 0,
-            y: 300
-        }, visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: "spring",
-                bounce: 0.4, duration: 1.5, ease: "easeInOut", delay: 2.5
-            }
-        }
-    }
 
-    const deviceSize = useBreakpointValue({
-        base: 'smallest',
-        sm: 'small',
-        md: 'medium',
-        lg: "large",
-        xl: 'extra large',
-        '2xl': 'huge'
-    })
-
-    useEffect(() => {
-        setIsMobile(
-            deviceSize === "medium" ||
-            deviceSize === "smallest" ||
-            deviceSize === "small"
-        )
-        setIsHuge(deviceSize === "huge")
-    }, [deviceSize])
 
     console.log({isMobile})
     console.log({isHuge})
