@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useRef} from "react"
 
-const CircleGenerator = ({isMobile, colorTheme}) => {
+const CircleGenerator = ({isMobile, colorTheme, viewportHeight, viewportWidth}) => {
     const svgRef = useRef(null)
     const generateRandomNumber = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min
@@ -55,7 +55,7 @@ const CircleGenerator = ({isMobile, colorTheme}) => {
         }
     }, [colorTheme])
 
-    const viewBox = isMobile? `0 0 600 900` : `0 0 900 600`
+    const viewBox = isMobile? `0 0 ${viewportWidth} ${viewportHeight}` : `0 0 900 600`
 
     return (
         <svg opacity="0.2" fill="#ffffff" id="visual" viewBox={viewBox} ref={svgRef}>
