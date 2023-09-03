@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import {
     Badge,
-    Box,
+    Box, Circle,
     Flex, GridItem,
     Heading, Link, SimpleGrid, Text,
 } from "@chakra-ui/react";
@@ -16,13 +16,22 @@ const Contact = ({contactRef}) => {
         <Flex ref={contactRef}
             bg={'white'}
               style={!isMobile && viewportHeight >= 665 ? {scrollSnapAlign: 'start', height: '100vh'} : null}
-              position={'relative'} flexDir={'column'}>
-            <Flex maxW="25%" py={'30px'} m={'auto'} mt={'50px'} flexDir={'column'} justify={"flex-start"}>
-                    <Heading py={'30px'} size="xl" textAlign={'center'}>
+              position={'relative'} flexDir={'column'} alignItems={'center'}>
+                <Circle
+                    mt={'60px'}
+                    ml={[0, '240px', '280px', '350px']}
+                    bg={chosenColor}
+                    size={['180px', '180px', '230px']}
+                    color={'white'}
+                    position={'absolute'}
+                >
+                    <Heading p={'10px'} size="lg" textAlign={'center'}>
                         More information
                     </Heading>
-                <Box boxShadow={"md"} rounded={"lg"} shadow={`3px 4px 10px ${chosenDarkColor}`}>
-                    <SimpleGrid columns={2} spacing={10} minChildWidth={'200px'} m={'30px'}>
+                </Circle>
+            <Flex maxW={['85%', "75%"]} py={'30px'} m={'auto'} mt={['250px', '150px']} flexDir={'column'} justify={"flex-start"}>
+                <Box borderWidth='1px' rounded={"lg"}  >
+                    <SimpleGrid columns={1} spacing={10} minChildWidth={'200px'} m={['15px', '25px', '30px']} maxWidth={'400px'}>
                         <GridItem>
                             <Heading fontSize={'xl'} mb={'10px'}>
                                 Contact
@@ -40,13 +49,13 @@ const Contact = ({contactRef}) => {
                             <Heading fontSize={'xl'} mb={'10px'}>
                                 My motivation
                             </Heading>
-                            <Text py={'10px'} textAlign={'justify'}>
+                            <Text py={'10px'} textAlign={isMobile? 'left' : 'justify'}>
                                 I'd greatly appreciate the chance to be a part of the mentoring program. My goal is to
                                 advance my React skills, especially with concepts like hooks, state management tools,
                                 testing
                                 and TypeScript. I find it great that the program can be tailored to my skill level and
                                 lets me learn at my own pace. Having guidance would be incredibly valuable, and I'm
-                                genuinely excited about the opportunity!
+                                excited about the opportunity!
                             </Text>
                         </GridItem>
                     </SimpleGrid>
