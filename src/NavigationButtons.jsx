@@ -19,7 +19,7 @@ const NavigationButtons = ({skills, experience, contact, header, scrollPosition,
                zIndex={3}
                position="fixed"
                align="center"
-               width={'15px'}>
+               width={'18px'}>
             {scrollPosition === 0 || scrollPosition < maxScroll ?
             <CircleFill />
                 :
