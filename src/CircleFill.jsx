@@ -7,7 +7,7 @@ const CircleFill = ({colorThemes, colorTheme}) => {
         <motion.svg
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
-            fill={colorThemes[colorTheme]?.colorScheme}
+            fill={colorThemes[colorTheme]?.darkColor}
             class="bi bi-triangle">
             <motion.circle stroke="white"
                            strokeWidth="0.8" cx="16" cy="16" r="16"/>
