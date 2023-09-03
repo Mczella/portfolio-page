@@ -31,22 +31,20 @@ const Header = () => {
     const {chosenColorScheme, chosenColor} = useContext(ColorThemeContext)
 
     const handleScroll = () => {
+        console.log('scroll')
         const maxScroll = boxRef.current.clientHeight
         const scrollPosition = boxRef.current.scrollTop
         setMaxScroll(maxScroll)
         setScrollPosition(scrollPosition)
 
-        console.log({maxScroll})
-        console.log({scrollPosition})
-
         if (scrollPosition < maxScroll) {
             if (scrollPosition > prevScrollY) {
-                isMobile ?
+                isMobile?
                     setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
                     :
                     setBoxHeight((scrollPosition / maxScroll) * 200 + "%")
             } else {
-                isMobile ?
+                isMobile?
                     setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
                     :
                     setBoxHeight((scrollPosition / maxScroll) * 200 + "%")
@@ -55,8 +53,11 @@ const Header = () => {
         }
     }
 
+    console.log({boxHeight})
     useEffect(() => {
         const boxRef = document.getElementById("scroll-box")
+
+        console.log({boxRef})
 
         if (boxRef) {
             boxRef.addEventListener("scroll", handleScroll)
@@ -132,7 +133,7 @@ const Header = () => {
                  !isMobile && viewportHeight >= 665 ?
                      {scrollSnapType: 'y mandatory', overflowY: 'scroll'}
                      :
-                     null
+                     {overflowY: 'scroll'}
              }
              height={'100vh'}>
             <Flex flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto">
