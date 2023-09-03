@@ -58,7 +58,7 @@ const Scroll = ({experienceRef}) => {
                             I acquired through the Pyladies course.</Text>
 
                         <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
-                            <Link href={'https://github.com/Mczella/FlappyBird'} color={chosenColor} isExternal>
+                            <Link href={'https://github.com/Mczella/FlappyBird'} isExternal>
                                 Check out the code here
                             </Link>
                         </Badge>
@@ -74,8 +74,7 @@ const Scroll = ({experienceRef}) => {
                         <Text bg="white">A Python project aimed at managing groceries and automating shopping.</Text>
 
                         <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
-                            <Link href={'https://github.com/Mczella/Rohlik.cz-automation'} color={chosenColor}
-                                  isExternal>
+                            <Link href={'https://github.com/Mczella/Rohlik.cz-automation'} isExternal>
                                 Check out the code here
                             </Link>
                         </Badge>
@@ -117,7 +116,7 @@ const Scroll = ({experienceRef}) => {
                             time at the ReactGirls Academy and continued afterwards. Check out the code on my GitHub
                             page.</Text>
                         <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
-                            <Link href={'https://javascript-bomberman.netlify.app/'} color={chosenColor} isExternal>
+                            <Link href={'https://javascript-bomberman.netlify.app/'} isExternal>
                                 Play here
                             </Link>
                         </Badge>
@@ -136,7 +135,7 @@ const Scroll = ({experienceRef}) => {
                             manage, and reserve gifts, as well as manage user accounts.</Text>
 
                         <Badge position={'relative'} zIndex={2} colorScheme={chosenColorScheme} px={2} rounded={'full'}>
-                            <Link href={'https://github.com/Mczella/Wishlist'} color={chosenColor} isExternal>
+                            <Link href={'https://github.com/Mczella/Wishlist'} isExternal>
                                 Check out the code here
                             </Link>
                         </Badge>
