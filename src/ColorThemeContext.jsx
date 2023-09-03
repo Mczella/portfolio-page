@@ -3,7 +3,7 @@ import {createContext, useState} from "react"
 const colorThemes = {
     'red': {
         colorScheme: 'red',
-        color: '#b90202',
+        color: '#c00707',
         darkColor: '#850000'
     },
     'pink': {
@@ -28,7 +28,7 @@ const colorThemes = {
     },
     'orange': {
         colorScheme: 'orange',
-        color: '#ce6801',
+        color: '#d76d02',
         darkColor: '#8c4601'
     },
     'teal': {
@@ -43,7 +43,7 @@ const colorThemes = {
     },
     'yellow': {
         colorScheme: 'yellow',
-        color: '#dcb001',
+        color: '#d7ac00',
         darkColor: '#b48f01'
     }
 }
