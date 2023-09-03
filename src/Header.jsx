@@ -1,15 +1,16 @@
-import {Box, Button, ButtonGroup, Circle, Flex, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react"
-import React, {useEffect, useRef, useState} from "react"
+import {Box, Button, ButtonGroup, Flex, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react"
+import React, {useContext, useEffect, useRef, useState} from "react"
 import {ReactSketchCanvas} from "react-sketch-canvas"
 import Scroll from "./Scroll"
 import Skills from "./Skills"
-import {motion, useAnimate, useInView} from "framer-motion"
+import {motion, useAnimate} from "framer-motion"
 import Name from "./Name"
 import Contact from "./Contact"
-import useScroll from "./UseScroll";
-import SwitchButton from "./SwitchButton";
-import NavigationButtons from "./NavigationButtons";
-import CircleGenerator from "./CircleGenerator";
+import useScroll from "./UseScroll"
+import SwitchButton from "./SwitchButton"
+import NavigationButtons from "./NavigationButtons"
+import CircleGenerator from "./CircleGenerator"
+import {ViewportContext} from "./ViewportContext"
 
 
 const Header = () => {
@@ -19,11 +20,8 @@ const Header = () => {
     const [boxHeight, setBoxHeight] = useState(0)
     const boxRef = useRef(null)
     const [prevScrollY, setPrevScrollY] = useState(0)
-    const [scope, animate] = useAnimate()
     const [isMobile, setIsMobile] = useState(false)
     const [isHuge, setIsHuge] = useState(false)
-    const [viewportHeight, setViewportHeight] = useState(null)
-    const [viewportWidth, setViewportWidth] = useState(null)
     const [skillsRef, scrollToComponent1] = useScroll()
     const [experienceRef, scrollToComponent2] = useScroll()
     const [contactRef, scrollToComponent3] = useScroll()
@@ -31,6 +29,8 @@ const Header = () => {
     const [colorTheme, setColorTheme] = useState('pink')
     const [maxScroll, setMaxScroll] = useState(0)
     const [scrollPosition, setScrollPosition] = useState(0)
+    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+
 
 
     const getRandomColor = (colorThemes) => {
@@ -98,18 +98,8 @@ const Header = () => {
         }
     }
 
-
-    useEffect(() => {
-        setViewportHeight(visualViewport.height)
-        setViewportWidth(visualViewport.width)
-    }, [])
-
-    visualViewport.onresize = () => {
-        setViewportHeight(visualViewport.height)
-        setViewportWidth(visualViewport.width)
-    }
-
-    console.log(viewportHeight)
+    console.log({viewportHeight})
+    console.log({viewportWidth})
 
 
 
@@ -278,7 +268,7 @@ const Header = () => {
                   ref={topRef}>
 
             <Box position={'absolute'} height={isMobile? '100dvh' : null} width={isMobile? '100%' : '100%'} zIndex={0}>
-            <CircleGenerator isMobile={isMobile} colorTheme={colorTheme} viewportWidth={viewportWidth} viewportHeight={viewportHeight}/>
+            <CircleGenerator isMobile={isMobile} colorTheme={colorTheme}/>
             </Box>
                 <Stack
                     width={'100%'}
@@ -374,13 +364,13 @@ const Header = () => {
                 </Flex>
             </Flex>
 
-            <Scroll isMobile={isMobile} viewportHeight={viewportHeight} experienceRef={experienceRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
+            <Scroll isMobile={isMobile} experienceRef={experienceRef} newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
 
 
-            <Skills isMobile={isMobile} viewportHeight={viewportHeight} skillsRef={skillsRef}
+            <Skills isMobile={isMobile} skillsRef={skillsRef}
                     newColor={colorThemes[colorTheme]?.color} colorTheme={colorTheme}/>
 
-            <Contact isMobile={isMobile} viewportHeight={viewportHeight} contactRef={contactRef}
+            <Contact isMobile={isMobile} contactRef={contactRef}
                      newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme} darkColor={colorThemes[colorTheme]?.darkColor}/>
         </Box>)
 }

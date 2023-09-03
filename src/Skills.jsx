@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 import {
     Box,
     Flex, Heading,
@@ -18,14 +18,17 @@ import {
 } from "./Logos"
 import {useHover} from "./useHover"
 import CircleGenerator from "./CircleGenerator";
+import {ViewportContext} from "./ViewportContext";
 
 
-const Skills = ({isMobile, viewportHeight, skillsRef, newColor, colorTheme}) => {
+const Skills = ({isMobile, skillsRef, newColor, colorTheme}) => {
     const cssHover = useHover()
     const firebaseHover = useHover()
     const htmlHover = useHover()
     const pythonHover = useHover()
     const jsHover = useHover()
+    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+
 
     return (
         <Flex ref={skillsRef} position={'relative'} bg={newColor} flexDir={'column'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null}>

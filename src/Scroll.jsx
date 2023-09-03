@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useState, useEffect, useRef, useContext} from "react"
 import {
     Box,
     Flex,
@@ -12,23 +12,39 @@ import {
     Badge,
 } from "@chakra-ui/react"
 import {inView, motion, useInView} from "framer-motion";
+import {ViewportContext} from "./ViewportContext";
 
-const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}) => {
+const Scroll = ({isMobile, experienceRef, newColor, colorScheme}) => {
     const columnLayout = useBreakpointValue({base: "1fr", lg: "repeat(7, 1fr)"})
-    const ref = useRef(null)
-    const isInView = useInView(ref)
+    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
 
+
+
+    const gridItem = {
+        hidden: {
+            opacity: 0,
+            y: 300
+        }, visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                bounce: 0.4, duration: 1.5, ease: "easeInOut", delay: 2.5
+            }
+        }
+    }
 
     return (
-        <><Flex ref={experienceRef} position={'relative'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null} flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto" py={'30px'} zIndex={1}>
+        <><Flex ref={experienceRef} position={'relative'} style={!isMobile && viewportHeight>=665?{ scrollSnapAlign: 'start', height: '100vh'}: null} flexDir="column" justify="center" alignItems="center" spacing="20" w="75%" m="auto" py={'30px'} pt={isMobile? 0 : '30px'} zIndex={1}>
                 <Grid position={'relative'} templateColumns={columnLayout} templateRows='repeat(5, 1fr)' gap={2}>
                     <GridItem
                         colSpan={isMobile ? 1 : 3}
                         style={{minWidth: '200px'}}>
                     </GridItem>
-                    <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems="center">
+                    <GridItem colSpan={1} rowSpan={5} display="flex" justifyContent="center" alignItems='flex-end'>
                         <Circle
-                            m={'20px'}
+                            mt={'20px'}
+                            mx={'20px'}
                             bg={newColor}
                             size={'150px'}
                             color={'white'}
@@ -42,12 +58,13 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}
                               colSpan={isMobile ? 1 : 3}
                               style={{minWidth: '200px'}}>
                     </GridItem>
-                    <GridItem
+                    <GridItem as={motion.div} initial="hidden" animate="visible"
+                              variants={gridItem}
                               colSpan={isMobile ? 1 : 3}
                               rowSpan={4}
                               style={{minWidth: '200px'}}>
-                        <Box textAlign={isMobile ? "justify" : "right"}>
-                            <Heading py={'10px'} bg="white" size={'md'}>Pyladies Python Course - Flappy Bird</Heading>
+                        <Box  textAlign={isMobile ? "justify" : "right"}>
+                            <Heading mt={isMobile? '20px' : 0} py={'10px'} bg="white" size={'md'}>Pyladies Python Course - Flappy Bird</Heading>
                             <Text bg="white">A Python adaptation of Flappy Bird written as a means to practice and apply the skills
                                 I acquired through the Pyladies course.</Text>
 
@@ -137,7 +154,7 @@ const Scroll = ({isMobile, viewportHeight, experienceRef, newColor, colorScheme}
                               style={{minWidth: '200px'}}>
                         <Box textAlign={isMobile ? "justify" : "right"}>
                             <Heading py={'10px'} textAlign={isMobile ? "left" : "right"} bg="white" size={'md'}>Google Cybersecurity Professional Certificate</Heading>
-                            <Text bg="white">Python | Linux | SQL | Security Information and Event Management (SIEM) tools. In progress, to be finished by December. Learning about common risks, threats and vulnerabilities, as well as the techniques to mitigate them.</Text>
+                            <Text bg="white">Python | Linux | SQL | Security Information and Event Management (SIEM) tools. In progress, to be finished by December.</Text>
                         </Box>
                     </GridItem>
                     <GridItem

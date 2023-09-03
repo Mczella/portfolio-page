@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {
     Badge,
     Box,
     Flex, GridItem,
     Heading, Link, SimpleGrid, Text,
 } from "@chakra-ui/react";
+import {ViewportContext} from "./ViewportContext";
 
-const Contact = ({isMobile, viewportHeight, colorScheme, darkColor, contactRef}) => {
+const Contact = ({isMobile, colorScheme, darkColor, contactRef}) => {
+    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+
     return (
         <Flex ref={contactRef}
             bg={'white'}

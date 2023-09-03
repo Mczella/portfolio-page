@@ -3,7 +3,6 @@ import {useHover} from "./useHover"
 import {motion} from "framer-motion"
 
 export const Chakra = () => {
-    const hover = useHover()
     return (
         <motion.svg whileHover={{
                         scale: 1.2,

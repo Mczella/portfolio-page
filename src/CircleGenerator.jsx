@@ -1,6 +1,9 @@
-import React, {useEffect, useMemo, useRef} from "react"
+import React, {useContext, useEffect, useMemo, useRef} from "react"
+import {ViewportContext} from "./ViewportContext";
 
-const CircleGenerator = ({isMobile, colorTheme, viewportHeight, viewportWidth}) => {
+const CircleGenerator = ({isMobile, colorTheme}) => {
+    const {viewportHeight, viewportWidth} = useContext(ViewportContext)
+
     const svgRef = useRef(null)
     const generateRandomNumber = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min
