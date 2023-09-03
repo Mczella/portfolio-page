@@ -53,39 +53,48 @@ const Header = () => {
     const colorThemes = {
         'red': {
             colorScheme: 'red',
-            color: 'red.500'
+            color: '#b90202',
+            darkColor: '#850000'
         },
         'pink': {
             colorScheme: 'pink',
-            color: '#ce016d'
+            color: '#ce016d',
+            darkColor: '#810042'
         },
         'blue': {
             colorScheme: 'blue',
-            color: 'blue.500'
+            color: '#0153ce',
+            darkColor: '#003886'
         },
         'green': {
             colorScheme: 'green',
-            color: 'green.500'
+            color: '#159b00',
+            darkColor: '#0e6701'
         },
         'purple': {
             colorScheme: 'purple',
-            color: 'purple.500'
+            color: '#6701bb',
+            darkColor: '#44007c'
         },
         'orange': {
             colorScheme: 'orange',
-            color: 'orange.500'
+            color: '#ce6801',
+            darkColor: '#8c4601'
         },
         'teal': {
             colorScheme: 'teal',
-            color: 'teal.500'
+            color: '#01b69b',
+            darkColor: '#017a6a'
         },
         'cyan': {
             colorScheme: 'cyan',
-            color: 'cyan.500'
+            color: '#01c7ce',
+            darkColor: '#00787c'
         },
         'yellow': {
             colorScheme: 'yellow',
-            color: 'yellow.500'
+            color: '#ce9e01',
+            darkColor: '#8f7101'
         }
     }
 
@@ -372,7 +381,7 @@ const Header = () => {
                     newColor={colorThemes[colorTheme]?.color} colorTheme={colorTheme}/>
 
             <Contact isMobile={isMobile} viewportHeight={viewportHeight} contactRef={contactRef}
-                     newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme}/>
+                     newColor={colorThemes[colorTheme]?.color} colorScheme={colorThemes[colorTheme]?.colorScheme} darkColor={colorThemes[colorTheme]?.darkColor}/>
         </Box>)
 }
 
