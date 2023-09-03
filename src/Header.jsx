@@ -21,7 +21,7 @@ import NavigationButtons from "./NavigationButtons"
 import CircleGenerator from "./CircleGenerator"
 import {ViewportContext} from "./ViewportContext"
 import {ColorThemeContext} from "./ColorThemeContext";
-import {about} from "./Animations";
+import {about} from "./animations";
 
 
 const Header = () => {
@@ -160,7 +160,12 @@ const Header = () => {
                 position="absolute"
                 width={'40px'}
                 top="40px"
-                right="40px">
+                right="40px"
+                as={motion.div}
+                whileTap = {{
+                    rotate: 540,
+                    transition: {duration: 0.2}
+                }}>
                 <SwitchButton/>
             </Box>
 
