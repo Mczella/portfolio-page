@@ -15,7 +15,7 @@ import {
     HtmlColor,
     HtmlWhite, JsColor, JsWhite, PythonColor, PythonWhite,
     ReactLogo
-} from "../Logos"
+} from "./Logos"
 import {useHover} from "../hooks/useHover"
 import CircleGenerator from "./CircleGenerator";
 import {ViewportContext} from "../contexts/ViewportContext";
@@ -43,7 +43,7 @@ const Skills = ({skillsRef}) => {
                 Skills
             </Heading>
             </Flex>
-            <SimpleGrid maxW="75%" py={'30px'} m={'auto'} mb={'50px'} minChildWidth='100px' spacing='40px'>
+            <SimpleGrid maxW="75%" py={'30px'} m={'auto'} minChildWidth='100px' spacing='40px'>
                 <Box zIndex={2}
                      onMouseEnter={pythonHover.handleMouseEnter}
                      onMouseLeave={pythonHover.handleMouseLeave}>
