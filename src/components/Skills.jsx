@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react"
+import React, {useContext} from "react"
 import {
     Box,
     Flex, Heading,
@@ -28,8 +28,8 @@ const Skills = ({skillsRef}) => {
     const htmlHover = useHover()
     const pythonHover = useHover()
     const jsHover = useHover()
-    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
-    const {chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
+    const {viewportHeight, isMobile} = useContext(ViewportContext)
+    const {chosenColor} = useContext(ColorThemeContext)
 
 
 
@@ -65,14 +65,20 @@ const Skills = ({skillsRef}) => {
                      onMouseLeave={cssHover.handleMouseLeave}>
                     {cssHover.isHovered ? <CssColor/> : <CssWhite/>}
                 </Box>
-                <ReactLogo/>
-                <Chakra/>
+                <Box>
+                    <ReactLogo/>
+                </Box>
+                <Box>
+                    <Chakra/>
+                </Box>
                 <Box zIndex={2}
                      onMouseEnter={firebaseHover.handleMouseEnter}
                      onMouseLeave={firebaseHover.handleMouseLeave}>
                     {firebaseHover.isHovered ? <FireBaseColor/> : <FireBaseWhite/>}
                 </Box>
-                <GitHub/>
+                <Box>
+                    <GitHub/>
+                </Box>
             </SimpleGrid>
         </Flex>
     )
