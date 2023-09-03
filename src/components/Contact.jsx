@@ -19,7 +19,7 @@ const Contact = ({contactRef}) => {
               position={'relative'} flexDir={'column'} alignItems={'center'}>
                 <Circle
                     mt={'60px'}
-                    ml={[0, '240px', '280px', '350px']}
+                    ml={[0, '240px', '400px', '550px']}
                     bg={chosenColor}
                     size={['180px', '180px', '230px']}
                     color={'white'}
@@ -31,7 +31,7 @@ const Contact = ({contactRef}) => {
                 </Circle>
             <Flex maxW={['85%', "75%"]} py={'30px'} m={'auto'} mt={['250px', '150px']} flexDir={'column'} justify={"flex-start"}>
                 <Box borderWidth='1px' rounded={"lg"}  >
-                    <SimpleGrid columns={1} spacing={10} minChildWidth={'200px'} m={['15px', '25px', '30px']} maxWidth={'400px'}>
+                    <SimpleGrid columns={1} spacing={10} minChildWidth={['200px', '200px', '400px']} m={['15px', '25px', '30px']} maxWidth={['400px', '400px', '800px']}>
                         <GridItem>
                             <Heading fontSize={'xl'} mb={'10px'}>
                                 Contact
