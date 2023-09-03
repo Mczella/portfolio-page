@@ -3,7 +3,7 @@ import React, {useContext} from "react"
 import {ColorThemeContext} from "./contexts/ColorThemeContext";
 
 const CircleFill = () => {
-    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
+    const {chosenDarkColor} = useContext(ColorThemeContext)
     return (
         <motion.svg
             whileHover={{

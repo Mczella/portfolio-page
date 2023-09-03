@@ -1,10 +1,9 @@
 import {motion} from "framer-motion"
 import React, {useContext} from "react"
-import {background} from "@chakra-ui/react";
 import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
 const SwitchButton = () => {
-    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
+    const {chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
 
     const pathVariants = {

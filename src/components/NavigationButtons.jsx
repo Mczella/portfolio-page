@@ -1,12 +1,10 @@
-import React, {useContext, useEffect, useState} from "react"
+import React from "react"
 import {Stack} from "@chakra-ui/react";
 import CircleFill from "../CircleFill";
 import CircleStroke from "../CircleStroke";
-import {ColorThemeContext} from "../contexts/ColorThemeContext";
 
 const NavigationButtons = ({skills, experience, contact, header, scrollPosition, maxScroll}) => {
     console.log({scrollPosition})
-    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange} = useContext(ColorThemeContext)
 
 
     const handleClick = (arg) => {

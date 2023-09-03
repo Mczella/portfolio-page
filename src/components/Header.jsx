@@ -1,18 +1,9 @@
-import {
-    Box,
-    Button,
-    ButtonGroup,
-    Flex,
-    Image,
-    Stack,
-    Text,
-    useBreakpointValue
-} from "@chakra-ui/react"
+import {Box, Button, ButtonGroup, Flex, Image, Stack, Text} from "@chakra-ui/react"
 import React, {useContext, useEffect, useRef, useState} from "react"
 import {ReactSketchCanvas} from "react-sketch-canvas"
 import Experience from "./Experience"
 import Skills from "./Skills"
-import {motion, useAnimate} from "framer-motion"
+import {motion} from "framer-motion"
 import Name from "../Name"
 import Contact from "./Contact"
 import useScroll from "../hooks/UseScroll"
@@ -21,7 +12,6 @@ import NavigationButtons from "./NavigationButtons"
 import CircleGenerator from "./CircleGenerator"
 import {ViewportContext} from "../contexts/ViewportContext"
 import {ColorThemeContext} from "../contexts/ColorThemeContext";
-import {about} from "../animations";
 
 
 const Header = () => {
@@ -37,8 +27,8 @@ const Header = () => {
     const [topRef, scrollToComponent4] = useScroll()
     const [maxScroll, setMaxScroll] = useState(0)
     const [scrollPosition, setScrollPosition] = useState(0)
-    const {viewportHeight, viewportWidth, isMobile, isHuge} = useContext(ViewportContext)
-    const { chosenColorScheme, chosenColor, chosenDarkColor, handleColorChange, colorTheme} = useContext(ColorThemeContext)
+    const {viewportHeight, isMobile, isHuge} = useContext(ViewportContext)
+    const {chosenColorScheme, chosenColor} = useContext(ColorThemeContext)
 
     const handleScroll = () => {
         const maxScroll = boxRef.current.clientHeight
@@ -51,12 +41,12 @@ const Header = () => {
 
         if (scrollPosition < maxScroll) {
             if (scrollPosition > prevScrollY) {
-                isMobile?
+                isMobile ?
                     setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
-                        :
+                    :
                     setBoxHeight((scrollPosition / maxScroll) * 200 + "%")
             } else {
-                isMobile?
+                isMobile ?
                     setBoxHeight((scrollPosition / maxScroll) * 100 + "%")
                     :
                     setBoxHeight((scrollPosition / maxScroll) * 200 + "%")
@@ -120,13 +110,19 @@ const Header = () => {
         }
     }, [isErasing])
 
-    console.log(isDrawing)
-
-
-
-    console.log({isMobile})
-    console.log({isHuge})
-
+    const about = {
+        hidden: {
+            opacity: 0,
+            y: 300
+        }, visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                bounce: 0.4, duration: 1.5, ease: "easeInOut", delay: 2.5
+            }
+        }
+    }
 
     return (
         <Box ref={boxRef}
@@ -145,14 +141,14 @@ const Header = () => {
             </Flex>
 
             {!isMobile && viewportHeight >= 665 ?
-                    <NavigationButtons
-                        skills={scrollToComponent1}
-                        experience={scrollToComponent2}
-                        contact={scrollToComponent3}
-                        header={scrollToComponent4}
-                        maxScroll={maxScroll}
-                        scrollPosition={scrollPosition}
-                    />
+                <NavigationButtons
+                    skills={scrollToComponent1}
+                    experience={scrollToComponent2}
+                    contact={scrollToComponent3}
+                    header={scrollToComponent4}
+                    maxScroll={maxScroll}
+                    scrollPosition={scrollPosition}
+                />
                 :
                 null}
             <Box
@@ -162,7 +158,7 @@ const Header = () => {
                 top="40px"
                 right="40px"
                 as={motion.div}
-                whileTap = {{
+                whileTap={{
                     rotate: 540,
                     transition: {duration: 0.2}
                 }}>
@@ -177,9 +173,10 @@ const Header = () => {
                   position={'relative'}
                   ref={topRef}>
 
-            <Box position={'absolute'} height={isMobile? '100dvh' : null} width={isMobile? '100%' : '100%'} zIndex={0}>
-            <CircleGenerator isMobile={isMobile}/>
-            </Box>
+                <Box position={'absolute'} height={isMobile ? '100dvh' : null} width={isMobile ? '100%' : '100%'}
+                     zIndex={0}>
+                    <CircleGenerator isMobile={isMobile}/>
+                </Box>
                 <Stack
                     width={'100%'}
                     height={'100%'}
@@ -201,15 +198,15 @@ const Header = () => {
 
                 <Box py={['10px', '25px', '50px']} pr={['10px', '25px', '50px']}>
                     <Box zIndex={1}>
-                    <Image position={'relative'}
-                           objectFit='contain'
-                           minW={'200px'}
-                           height={'400px'}
-                           maxH={isMobile ? '50vh' : null}
-                           maxW={'80%'}
-                           left={0}
-                           src='me.png'
-                           alt='Me'/>
+                        <Image position={'relative'}
+                               objectFit='contain'
+                               minW={'200px'}
+                               height={'400px'}
+                               maxH={isMobile ? '50vh' : null}
+                               maxW={'80%'}
+                               left={0}
+                               src='me.png'
+                               alt='Me'/>
                     </Box>
                     {isDrawing ? (
                         <ButtonGroup
