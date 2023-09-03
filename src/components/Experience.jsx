@@ -51,8 +51,9 @@ const Experience = ({experienceRef}) => {
                     rowSpan={4}
                     style={{minWidth: '200px'}}>
                     <Box textAlign={isMobile ? "justify" : "right"}>
-                        <Heading mt={isMobile ? '20px' : 0} py={'10px'} bg="white" size={'md'}>Pyladies Python Course -
-                            Flappy Bird</Heading>
+                        <Heading mt={isMobile ? '20px' : 0} py={'10px'} bg="white" size={'md'} textAlign={isMobile ? 'left' : 'right'}>
+                            Pyladies Python Course - Flappy Bird
+                        </Heading>
                         <Text bg="white">A Python adaptation of Flappy Bird written as a means to practice and apply the
                             skills
                             I acquired through the Pyladies course.</Text>
@@ -127,7 +128,7 @@ const Experience = ({experienceRef}) => {
                     rowSpan={3}
                     style={{minWidth: '200px'}}>
                     <Box textAlign={isMobile ? "justify" : "left"}>
-                        <Heading py={'10px'} bg="white" size={'md'}>Wishlist React App Project</Heading>
+                        <Heading py={'10px'} bg="white" size={'md'} textAlign={'left'}>Wishlist React App Project</Heading>
                         <Text bg="white">Wishlist is a React project built with Firebase and Chakra UI, designed to
                             simplify
                             the process of creating gift registries. It provides users with the ability to
@@ -157,7 +158,7 @@ const Experience = ({experienceRef}) => {
                     rowSpan={3}
                     style={{minWidth: '200px'}}>
                     <Box textAlign={isMobile ? "justify" : "left"}>
-                        <Heading py={'10px'} bg="white" size={'md'}>Pyladies Data Course</Heading>
+                        <Heading textAlign={'left'} py={'10px'} bg="white" size={'md'}>Pyladies Data Course</Heading>
                         <Text bg="white">Data Science | Jupyter notebook | Pandas | Machine learning. Starting in
                             September.</Text>
                     </Box>
