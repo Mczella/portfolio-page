@@ -28,9 +28,13 @@ const Skills = ({skillsRef}) => {
     const htmlHover = useHover()
     const pythonHover = useHover()
     const jsHover = useHover()
+    const chakraHover = useHover()
+    const reactHover = useHover()
+    const githubHover = useHover()
     const {viewportHeight, isMobile} = useContext(ViewportContext)
     const {chosenColor} = useContext(ColorThemeContext)
 
+    console.log({chakraHover})
 
 
     return (
@@ -65,10 +69,14 @@ const Skills = ({skillsRef}) => {
                      onMouseLeave={cssHover.handleMouseLeave}>
                     {cssHover.isHovered ? <CssColor/> : <CssWhite/>}
                 </Box>
-                <Box>
+                <Box zIndex={2}
+                     onMouseEnter={reactHover.handleMouseEnter}
+                     onMouseLeave={reactHover.handleMouseLeave}>
                     <ReactLogo/>
                 </Box>
-                <Box>
+                <Box zIndex={2}
+                           onMouseEnter={chakraHover.handleMouseEnter}
+                           onMouseLeave={chakraHover.handleMouseLeave}>
                     <Chakra/>
                 </Box>
                 <Box zIndex={2}
@@ -76,7 +84,9 @@ const Skills = ({skillsRef}) => {
                      onMouseLeave={firebaseHover.handleMouseLeave}>
                     {firebaseHover.isHovered ? <FireBaseColor/> : <FireBaseWhite/>}
                 </Box>
-                <Box>
+                <Box zIndex={2}
+                     onMouseEnter={githubHover.handleMouseEnter}
+                     onMouseLeave={githubHover.handleMouseLeave}>
                     <GitHub/>
                 </Box>
             </SimpleGrid>
